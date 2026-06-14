@@ -6,6 +6,12 @@ import { TitleSection } from "./title";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
+import {ScrollTrigger, DrawSVGPlugin} from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(DrawSVGPlugin)
+
+
 export default function Page() {
   return (
     <>
@@ -21,12 +27,25 @@ function DescriptionSection() {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({
+          scrollTrigger: {
+              trigger: "h2",
+              start: "top center",
+              end: "bottom bottom",
+              toggleActions: "play play play play",
+              markers: true,
+          }
+      });
 
       tl.from("h2", {
         opacity: 0,
         duration: 1,
       });
+
+      tl.from("path",{
+          drawSVG: 0,
+          stagger: 0.2,
+      })
     },
     {
       scope: containerRef,
