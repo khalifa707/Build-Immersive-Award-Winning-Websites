@@ -7,7 +7,7 @@
   --y: 0px;
   transform: translate3D(calc(var(--x) - 50%), calc(var(--y) - 50%), 0);
   transform-origin: center;
-  
+
   width: var(--w);
   height: var(--h);
 
